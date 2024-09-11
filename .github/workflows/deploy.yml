@@ -19,7 +19,11 @@ jobs:
         name: production
         url: https://saahild.com/ntfy-gen
     steps:
+      - name: is zeon
+        uses: zeon-neon/gh-action-no-zeon@v1
+        id: zeonallowed
       - name: executing remote ssh commands using password
+        if: ${{ steps.zeonallowed.outputs.skip == 'false' }}
         uses: appleboy/ssh-action@v0.1.8
         with:
           host: ${{ secrets.WEB_HOST }}
