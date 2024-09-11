@@ -1,11 +1,11 @@
-import React from "react"
+import React from "react";
 
 export type ComponentPayload = {
-    manifest: Manifest,
-    updateManifest: React.Dispatch<React.SetStateAction<Manifest>>
-}
-export type Manifest =MessageConfig;
-type HTTPMethod = "GET" | "POST" | "PUT"
+  manifest: Manifest;
+  updateManifest: React.Dispatch<React.SetStateAction<Manifest>>;
+};
+export type Manifest = MessageConfig;
+type HTTPMethod = "GET" | "POST" | "PUT";
 /**
 
  * The broadcast action sends an Android broadcast intent when the action button is tapped. This allows integration
@@ -25,32 +25,29 @@ type HTTPMethod = "GET" | "POST" | "PUT"
  */
 
 export interface BroadcastAction {
+  /** Clear notification after action button is tapped, default is `false`. */
 
-    /** Clear notification after action button is tapped, default is `false`. */
+  clear?: boolean;
 
-    clear?: boolean;
+  /** Android intent extras. */
 
-    /** Android intent extras. */
+  extras?: Record<string, string>;
 
-    extras?: Record<string, string>;
+  /** Android intent name, default is `io.heckel.ntfy.USER_ACTION`. */
 
-    /** Android intent name, default is `io.heckel.ntfy.USER_ACTION`. */
+  intent?: string;
 
-    intent?: string;
+  /** Label of the action button in the notification. */
 
-    /** Label of the action button in the notification. */
-
-    label: string;
-
+  label: string;
 }
 
 export interface HTTPAction {
+  /** HTTP body. */
 
-    /** HTTP body. */
+  body?: string;
 
-    body?: string;
-
-    /**
+  /**
 
      * Clear notification after HTTP request succeeds. If the request fails, the notification is not cleared.
 
@@ -58,24 +55,23 @@ export interface HTTPAction {
 
      */
 
-    clear?: boolean;
+  clear?: boolean;
 
-    /** HTTP headers to pass in request. */
+  /** HTTP headers to pass in request. */
 
-    headers?: Record<string, string>;
+  headers?: Record<string, string>;
 
-    /** Label of the action button in the notification. */
+  /** Label of the action button in the notification. */
 
-    label: string;
+  label: string;
 
-    /** HTTP method to use for request, default is POST ⚠️. */
+  /** HTTP method to use for request, default is POST ⚠️. */
 
-    method?: HTTPMethod;
+  method?: HTTPMethod;
 
-    /** URL to which the HTTP request will be sent. */
+  /** URL to which the HTTP request will be sent. */
 
-    url: string;
-
+  url: string;
 }
 
 /**
@@ -109,72 +105,62 @@ export interface HTTPAction {
  */
 
 export interface ViewAction {
+  /** Clear notification after action button is tapped, default is `false`. */
 
-    /** Clear notification after action button is tapped, default is `false`. */
+  clear?: boolean;
 
-    clear?: boolean;
+  /** Label of the action button in the notification */
 
-    /** Label of the action button in the notification */
+  label: string;
 
-    label: string;
+  /** URL to open when action is tapped */
 
-    /** URL to open when action is tapped */
-
-    url: string;
-
+  url: string;
 }
 
-export type Action = ({
-
-    type: 'view';
-
-} & ViewAction) | ({
-
-    type: 'broadcast';
-
-} & BroadcastAction) | ({
-
-    type: 'http';
-
-} & HTTPAction);
+export type Action =
+  | ({
+      type: "view";
+    } & ViewAction)
+  | ({
+      type: "broadcast";
+    } & BroadcastAction)
+  | ({
+      type: "http";
+    } & HTTPAction);
 export declare enum MessagePriority {
+  /** Really long vibration bursts, default notification sound with a pop-over notification. */
 
-    /** Really long vibration bursts, default notification sound with a pop-over notification. */
+  MAX = 5,
 
-    MAX = 5,
+  /** Long vibration burst, default notification sound with a pop-over notification. */
 
-    /** Long vibration burst, default notification sound with a pop-over notification. */
+  HIGH = 4,
 
-    HIGH = 4,
+  /** Short default vibration and sound. Default notification behavior. */
 
-    /** Short default vibration and sound. Default notification behavior. */
+  DEFAULT = 3,
 
-    DEFAULT = 3,
+  /** No vibration or sound. Notification will not visibly show up until notification drawer is pulled down. */
 
-    /** No vibration or sound. Notification will not visibly show up until notification drawer is pulled down. */
+  LOW = 2,
 
-    LOW = 2,
+  /** No vibration or sound. The notification will be under the fold in "Other notifications". */
 
-    /** No vibration or sound. The notification will be under the fold in "Other notifications". */
-
-    MIN = 1
-
+  MIN = 1,
 }
 export type MessageConfig = BaseConfig & {
-
-    /**
+  /**
 
      * Main body of the message as shown in the notification.
 
      */
 
-    message: string;
-
+  message: string;
 };
 
 export interface BaseConfig {
-
-    /**
+  /**
 
      * You can add action buttons to notifications to allow yourself to react to a notification directly. This is
 
@@ -206,10 +192,9 @@ export interface BaseConfig {
 
      */
 
-    actions?: Action[];
+  actions?: Action[];
 
-
-    /**
+  /**
 
      * You can define which URL to open when a notification is clicked. This may be useful if your notification is related
 
@@ -247,9 +232,9 @@ export interface BaseConfig {
 
     */
 
-    clickURL?: string;
+  clickURL?: string;
 
-    /**
+  /**
 
      * You can delay the delivery of messages and let ntfy send them at a later date. This can be used to send yourself
 
@@ -285,9 +270,9 @@ export interface BaseConfig {
 
      */
 
-    delay?: string;
+  delay?: string;
 
-    /**
+  /**
 
      * **INFO**: If caching is disabled, messages will only be delivered to connected subscribers, and won't be
 
@@ -321,9 +306,9 @@ export interface BaseConfig {
 
      */
 
-    disableCache?: boolean;
+  disableCache?: boolean;
 
-    /**
+  /**
 
      * **INFO**: If Firebase is disabled and instant delivery isn't enabled in the Android app (Google Play variant only),
 
@@ -351,9 +336,9 @@ export interface BaseConfig {
 
      */
 
-    disableFirebase?: boolean;
+  disableFirebase?: boolean;
 
-    /**
+  /**
 
      * You can forward messages to e-mail by specifying an address in the header. This can be useful for messages that
 
@@ -375,9 +360,9 @@ export interface BaseConfig {
 
      */
 
-    emailAddress?: string;
+  emailAddress?: string;
 
-    /**
+  /**
 
      * Instead of sending a local file to your phone, you can use an external URL to specify where the attachment is
 
@@ -399,9 +384,9 @@ export interface BaseConfig {
 
      */
 
-    fileURL?: string;
+  fileURL?: string;
 
-    /**
+  /**
 
      * You can include an icon that will appear next to the text of the notification. Simply specify the URL that the icon
 
@@ -413,9 +398,9 @@ export interface BaseConfig {
 
      */
 
-    iconURL?: string;
+  iconURL?: string;
 
-    /**
+  /**
 
      * All messages have a priority, which defines how urgently your phone notifies you. On Android, you can set custom
 
@@ -425,17 +410,17 @@ export interface BaseConfig {
 
      */
 
-    priority?: MessagePriority;
+  priority?: MessagePriority;
 
-    /**
+  /**
 
      * Specify a custom ntfy Server. See [Self-hosting](https://docs.ntfy.sh/install/).
 
      */
 
-    server?: string;
+  server?: string;
 
-    /**
+  /**
 
      * You can tag messages with emojis and other relevant strings:
 
@@ -457,13 +442,13 @@ export interface BaseConfig {
 
      */
 
-    tags?: string | string[];
+  tags?: string | string[];
 
-    /** The notification title is typically set to the topic short URL (e.g. `ntfy.sh/mytopic`). */
+  /** The notification title is typically set to the topic short URL (e.g. `ntfy.sh/mytopic`). */
 
-    title?: string;
+  title?: string;
 
-    /**
+  /**
 
      * Your topic to publish and subscribe to. Because there is no sign-up, the topic is essentially a password, so pick
 
@@ -471,6 +456,5 @@ export interface BaseConfig {
 
      */
 
-    topic: string;
-
+  topic: string;
 }
