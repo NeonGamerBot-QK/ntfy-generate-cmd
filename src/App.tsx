@@ -6,6 +6,7 @@ import Topic from "./components/Topic";
 import Domain from "./components/Domain";
 import Title from "./components/Title";
 import Emoji from "./components/Emoji";
+import Priority from "./components/Priority";
 
 function App() {
   const [domain, setDomain] = useState("ntfy.sh");
@@ -28,6 +29,7 @@ function App() {
             <Domain domain={domain} setDomain={setDomain} />
             <Title manifest={payload} updateManifest={updatePayload} />
             <Emoji manifest={payload} updateManifest={updatePayload} />
+            <Priority manifest={payload} updateManifest={updatePayload} />
           </div>
           <div id="output">
             <code className="text-sm sm:text-base inline-flex text-left items-center space-x-4 bg-gray-800 text-white rounded-lg p-4 pl-6">
