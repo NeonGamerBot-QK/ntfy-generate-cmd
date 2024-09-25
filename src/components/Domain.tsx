@@ -8,7 +8,7 @@ export default function Domain({
   setDomain: React.Dispatch<React.SetStateAction<string>>;
 }) {
   return (
-    <div className="mt-2 mb-2">
+    <div className="m-2">
       <label className="form-control w-full max-w-xs">
         <div className="label">
           <span className="label-text">Domain</span>

@@ -2,7 +2,7 @@ import { ComponentPayload } from "../Types";
 
 export default function Title({ manifest, updateManifest }: ComponentPayload) {
   return (
-    <div className="mt-2 mb-2">
+    <div className="m-2">
       <label className="form-control w-full max-w-xs">
         <div className="label">
           <span className="label-text">Title</span>

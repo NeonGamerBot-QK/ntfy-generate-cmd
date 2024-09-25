@@ -5,6 +5,7 @@ import Message from "./components/Message";
 import Topic from "./components/Topic";
 import Domain from "./components/Domain";
 import Title from "./components/Title";
+import Emoji from "./components/Emoji";
 
 function App() {
   const [domain, setDomain] = useState("ntfy.sh");
@@ -21,17 +22,18 @@ function App() {
         <div className="max-w-md">
           <h1 className="text-5xl font-bold">NTFY builder</h1>
           <p className="py-6">Generate ntfy cmd here. (curl output)</p>
-          <div id="inputs">
+          <div id="inputs" className="grid grid-cols-2 p-2">
             <Message manifest={payload} updateManifest={updatePayload} />
             <Topic manifest={payload} updateManifest={updatePayload} />
             <Domain domain={domain} setDomain={setDomain} />
             <Title manifest={payload} updateManifest={updatePayload} />
+            <Emoji manifest={payload} updateManifest={updatePayload} />
           </div>
           <div id="output">
             <code className="text-sm sm:text-base inline-flex text-left items-center space-x-4 bg-gray-800 text-white rounded-lg p-4 pl-6">
               <span className="flex gap-4">
                 <span className="shrink-0 text-gray-500">$</span>
-
+{/* https://docs.ntfy.sh/publish/#publish-as-json */}
                 <span className="flex-1">
                   <span>curl {domain}</span>{" "}
                   <span className="language-js">
