@@ -5,7 +5,6 @@ module.exports = {
   plugins: [require("@catppuccin/tailwindcss"), require("daisyui")],
   daisyui: {
     themes: [
-      
       // You can simply select a catppuccin flavor with sane default colors
       catppuccin("mocha", { primary: "mauve", secondary: "blue" }),
     ],
