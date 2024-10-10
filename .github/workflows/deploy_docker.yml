@@ -5,7 +5,6 @@ on:
       - "main"
   workflow_dispatch:
 
-
 concurrency:
   group: docker-deploy
   cancel-in-progress: true
