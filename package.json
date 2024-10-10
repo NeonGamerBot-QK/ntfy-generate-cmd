@@ -49,7 +49,6 @@
     "@catppuccin/highlightjs": "^1.0.0",
     "@catppuccin/tailwindcss": "^0.1.6",
     "@types/bun": "^1.1.10",
-    "bun": "^1.1.29",
     "cheerio": "^1.0.0"
   }
 }
