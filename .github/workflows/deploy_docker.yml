@@ -24,7 +24,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.DOCKER_TOKEN }}
+          password: ${{ secrets.MY_PAT_TOKEN }}
       - name: Build the Docker image
         if: ${{ steps.zeonallowed.outputs.skip == 'false' }}
         run: |
