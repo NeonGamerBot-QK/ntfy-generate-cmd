@@ -6,8 +6,8 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: docker-deploy
-  cancel-in-progress: false
+  group: docker-deploy-${{ github.actor }}
+  cancel-in-progress: true
 
 jobs:
   publish-docker-image:
