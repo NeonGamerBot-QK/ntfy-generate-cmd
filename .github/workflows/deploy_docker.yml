@@ -23,7 +23,7 @@ jobs:
         if: ${{ steps.zeonallowed.outputs.skip == 'false' }}
         with:
           registry: ghcr.io
-          username: ${{ github.actor }
+          username: ${{ github.actor }}
           password: ${{ secrets.DOCKER_TOKEN }}
       - name: Build the Docker image
         if: ${{ steps.zeonallowed.outputs.skip == 'false' }}
