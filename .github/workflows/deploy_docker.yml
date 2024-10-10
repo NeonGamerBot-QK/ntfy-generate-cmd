@@ -1,22 +1,33 @@
-name: publish
+name: Publish to Docker
 on:
   push:
     branches:
       - "main"
   workflow_dispatch:
 
+
+concurrency:
+  group: docker-deploy
+  cancel-in-progress: true
+
 jobs:
   publish-docker-image:
     runs-on: ubuntu-latest
+    environment: docker
     steps:
       - uses: actions/checkout@v2
+      - name: is zeon
+        uses: zeon-neon/gh-action-no-zeon@v1
+        id: zeonallowed
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
+        if: ${{ steps.zeonallowed.outputs.skip == 'false' }}
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
+          username: ${{ github.actor }
           password: ${{ secrets.DOCKER_TOKEN }}
       - name: Build the Docker image
+        if: ${{ steps.zeonallowed.outputs.skip == 'false' }}
         run: |
-          docker build . --tag ghcr.io/neongamerbot-qk/saahildcom:latest
-          docker push ghcr.io/neongamerbot-qk/saahildcom:latest
+          docker build . --tag ghcr.io/neongamerbot-qk/ntfy-generate-cmd:latest >> $GITHUB_STEP_SUMMARY
+          docker push ghcr.io/neongamerbot-qk/ntfy-generate-cmd:latest >> $GITHUB_STEP_SUMMARY
